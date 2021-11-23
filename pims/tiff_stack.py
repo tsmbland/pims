@@ -120,33 +120,33 @@ class TiffStack_tifffile(FramesSequence):
     def _read_metadata(self, tiff):
         """Read metadata for current frame and return as dict"""
         # tags are only stored as a TiffTags object on the parent TiffPage now
-        tags = tiff.keyframe.tags
+        # tags = tiff.keyframe.tags
         md = {}
-        for name in ('ImageDescription', 'image_description'):
-            if name in tags:
-                md["ImageDescription"] = tags[name].value
-                break
-        for name in ('DateTime', 'datetime'):
-            if name in tags:
-                md["DateTime"] = tags[name].value
-                break
-        for name in ('Software', 'software'):
-            if name in tags:
-                md["Software"] = tags[name].value
-                break
-        for name in ('DocumentName', 'document_name'):
-            if name in tags:
-                md["DocumentName"] = tags[name].value
-                break
-        for key in md:
-            try:
-                md[key] = md[key].decode()
-            except AttributeError:
-                pass
-            except UnicodeDecodeError:
-                md[key] = ''
-            if key == 'DateTime':
-                md[key] = _tiff_datetime(md[key])
+        # for name in ('ImageDescription', 'image_description'):
+        #     if name in tags:
+        #         md["ImageDescription"] = tags[name].value
+        #         break
+        # for name in ('DateTime', 'datetime'):
+        #     if name in tags:
+        #         md["DateTime"] = tags[name].value
+        #         break
+        # for name in ('Software', 'software'):
+        #     if name in tags:
+        #         md["Software"] = tags[name].value
+        #         break
+        # for name in ('DocumentName', 'document_name'):
+        #     if name in tags:
+        #         md["DocumentName"] = tags[name].value
+        #         break
+        # for key in md:
+        #     try:
+        #         md[key] = md[key].decode()
+        #     except AttributeError:
+        #         pass
+        #     except UnicodeDecodeError:
+        #         md[key] = ''
+        #     if key == 'DateTime':
+        #         md[key] = _tiff_datetime(md[key])
         return md
 
     @property
